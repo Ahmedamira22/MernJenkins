@@ -1,21 +1,36 @@
 version: '3.8'
-services:
-  backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    container_name: backend
-    ports:
-      - "4000:4000"
 
+services:
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    container_name: frontend
+    build: ./client
     ports:
-      - "3000:80"
+      - "3000:5173"
+    volumes:
+      - ./client:/app
+      - /app/node_modules
     environment:
-      - VITE_API_BASE_URL=http://backend:4000
+      - VITE_API_URL=http://localhost:5000
     depends_on:
       - backend
+
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/crud
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+volumes:
+  mongodb_data:

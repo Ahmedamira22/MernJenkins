@@ -1,22 +1,17 @@
-FROM node:lts-alpine
+# Use Node.js image
+FROM node:20-slim
 
-# Set working directory
 WORKDIR /app
 
-# Copy package files
-COPY package*.json ./
-
-# Install dependencies (including nodemon for development)
-RUN npm install
-
-# Install nodemon globally for development (optional, for easier dev mode)
+# Install nodemon globally
 RUN npm install -g nodemon
 
-# Copy the rest of the backend code
+COPY package*.json ./
+RUN npm install
+
 COPY . .
 
-# Expose the backend port (default: 9000)
-EXPOSE 9000
+EXPOSE 5000
 
-# Run the server in development mode using nodemon
-CMD ["npm", "start"]
+# Use nodemon for development
+CMD ["nodemon", "server.js"]
