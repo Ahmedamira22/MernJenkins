@@ -1,8 +1,0 @@
-image:
-  repository: ahmedamira22/mern-frontend
-  pullPolicy: IfNotPresent
-  tag: "latest"
-
-service:
-  type: ClusterIP
-  port: 8080
