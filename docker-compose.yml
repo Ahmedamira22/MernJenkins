@@ -1,30 +1,32 @@
 version: '3.8'
-
 services:
   frontend:
-    image: ahmedamira22/mern-frontend:latest # Use the image built by Jenkins
+    build:
+      context: ./client
+      dockerfile: Dockerfile
     ports:
-      - "3000:5173"
-    environment:
-      - VITE_API_URL=http://localhost:5000
+      - "3000:3000"
     depends_on:
       - backend
 
   backend:
-    image: ahmedamira22/mern-backend:latest # Use the image built by Jenkins
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     ports:
       - "5000:5000"
     environment:
-      - MONGODB_URI=mongodb://mongodb:27017/crud
+      - MONGO_URL=mongodb://mongodb:27017/crud
     depends_on:
       - mongodb
 
   mongodb:
-    image: mongo
+    image: mongo:6
+    container_name: mongodb
     ports:
       - "27017:27017"
     volumes:
-      - mongodb_data:/data/db
+      - mongo-data:/data/db
 
 volumes:
-  mongodb_data:
+  mongo-data:
