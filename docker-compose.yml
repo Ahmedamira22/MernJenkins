@@ -1,32 +1,52 @@
 version: '3.8'
+
 services:
   frontend:
-    build:
-      context: ./client
-      dockerfile: Dockerfile
+    image: ahmedamira22/mern-frontend:latest
+    container_name: front
     ports:
       - "3000:3000"
     depends_on:
       - backend
+    networks:
+      - app-network
+    restart: unless-stopped
 
   backend:
-    build:
+    build: 
       context: ./backend
       dockerfile: Dockerfile
+    container_name: back
     ports:
-      - "5000:5000"
+      - "5000:4000"
     environment:
-      - MONGO_URL=mongodb://mongodb:27017/crud
+      - MONGO_URI=mongodb://root:example@mongodb:27017/crud?authSource=admin
+      - PORT=4000
     depends_on:
       - mongodb
+    networks:
+      - app-network
+    restart: unless-stopped
 
   mongodb:
     image: mongo:6
-    container_name: mongodb
+    container_name: mongo
     ports:
       - "27017:27017"
     volumes:
       - mongo-data:/data/db
+    networks:
+      - app-network
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=example
+      - MONGO_INITDB_DATABASE=crud
+    restart: unless-stopped
+
+networks:
+  app-network:
+    driver: bridge
 
 volumes:
   mongo-data:
+    name: mongo-data

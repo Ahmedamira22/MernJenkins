@@ -1,9 +1,24 @@
-# Frontend Dockerfile
+# Use an official Node.js runtime as the base image
 FROM node:18-alpine
+
+# Set the working directory inside the container
 WORKDIR /app
-COPY package*.json ./
+
+# Copy package.json and package-lock.json (if available) to install dependencies
+COPY package.json package-lock.json* ./
+
+# Install dependencies
 RUN npm install
+
+# Copy the rest of the frontend source code into the container
 COPY . .
+
+# Build the project
 RUN npm run build
+
+# Expose port 3000 (Vite default port)
 EXPOSE 3000
-CMD ["npx", "vite", "preview"]
+
+# Start the Vite development server
+CMD ["npm", "run", "dev", "--", "--host"]
+

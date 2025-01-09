@@ -1,8 +1,23 @@
-# Backend Dockerfile
-FROM node:18
-WORKDIR /app
+FROM node:20-slim
+
+WORKDIR /usr/src/app
+
+# Copy package files
 COPY package*.json ./
+
+# Install dependencies
 RUN npm install
+
+# Copy the rest of the application
 COPY . .
-EXPOSE 5000
-CMD ["npm", "start"]
+
+# Expose the port
+EXPOSE 4000
+
+# Set environment variables
+ENV NODE_ENV=production \
+    PORT=4000 \
+    MONGO_URI=mongodb://root:example@mongodb:27017/crud?authSource=admin
+
+# Override the start command to use node directly instead of nodemon
+CMD ["node", "server.js"]
