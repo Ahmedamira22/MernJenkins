@@ -4,7 +4,7 @@ metadata:
   name: backend-service
 spec:
   selector:
-    app: app-server
+    app: backend-app
   ports:
     - protocol: TCP
       port: 4000
