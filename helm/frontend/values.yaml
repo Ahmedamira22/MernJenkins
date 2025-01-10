@@ -1,33 +1,72 @@
-# values.yaml for Helm Chart
+# Default values for frontend chart
 
-# Deployment settings
-deployment:
-  replicas: 3
-  name: client-deployment
-  container:
-    name: front
-    image:
-      repository: ahmedamira22/mern-frontend
-      tag: latest
-    ports:
-      - containerPort: 5173
-    envFrom:
-      - configMapRef:
-          name: app-configmap
+replicaCount: 3
 
-# Service settings
+image:
+  repository: ahmedamira22/mern-frontend
+  tag: latest
+  pullPolicy: IfNotPresent
+
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: false
+  name: ""
+
+podSecurityContext: {}
+
+securityContext: {}
+
 service:
-  name: client-service
   type: NodePort
-  ports:
-    port: 80
-    targetPort: 5173
-    nodePort: 30006
+  port: 80
+  targetPort: 5173
+  nodePort: 30006
 
-# ConfigMap settings
+containerPort: 5173
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 200m
+    memory: 256Mi
+
 configMap:
   name: app-configmap
-  data:
-    MONGO_URI: mongodb://mongodb-service:27017/crud
-    REACT_APP_SERVER_URL: http://server-service:5000
-    PORT: "5000"
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+# Labels for the deployment and pods
+labels:
+  app: mern-client
+
+# Readiness probe
+readinessProbe:
+  enabled: true
+  initialDelaySeconds: 10
+  periodSeconds: 10
+  timeoutSeconds: 5
+  successThreshold: 1
+  failureThreshold: 3
+  
+# Liveness probe
+livenessProbe:
+  enabled: true
+  initialDelaySeconds: 15
+  periodSeconds: 20
+  timeoutSeconds: 5
+  successThreshold: 1
+  failureThreshold: 3
