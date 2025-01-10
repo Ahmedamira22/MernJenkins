@@ -1,5 +1,11 @@
 # Default values for MongoDB
 
+# ServiceAccount Configuration
+serviceAccount:
+  create: false
+  annotations: {}
+  name: ""
+
 # MongoDB Deployment Configuration
 replicaCount: 1
 
@@ -82,3 +88,11 @@ affinity: {}
 # ConfigMap reference
 configMapRef:
   name: app-configmap
+
+# Ingress Configuration
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts: []
+  tls: []
