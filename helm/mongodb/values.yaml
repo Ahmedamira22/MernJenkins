@@ -1,98 +1,28 @@
-# Default values for MongoDB
+auth:
+  rootUser: bouhmid
+  rootPassword: bouhmid
 
-# ServiceAccount Configuration
-serviceAccount:
-  create: false
-  annotations: {}
-  name: ""
-
-# MongoDB Deployment Configuration
+architecture: standalone
+  
 replicaCount: 1
+
+service:
+  type: ClusterIP
+  port: 27017
 
 image:
   repository: mongo
   tag: latest
   pullPolicy: IfNotPresent
 
-nameOverride: ""
-fullnameOverride: ""
+persistence:
+  enabled: true
+  size: 8Gi
 
-# MongoDB Configuration
-mongodb:
-  auth:
-    rootUsername: "bouhmid"
-    rootPassword: "bouhmid"
-  database: "crud"
-
-# Pod Configuration
-podAnnotations: {}
-
-podSecurityContext: {}
-
-securityContext: {}
-
-# Service Configuration
-service:
-  type: ClusterIP
-  port: 27017
-  targetPort: 27017
-
-# Container Configuration
-containerPort: 27017
-
-# Resource Limits
 resources:
-  requests:
-    cpu: 250m
-    memory: 256Mi
   limits:
     cpu: 500m
     memory: 512Mi
-
-# Storage Configuration
-persistence:
-  enabled: true
-  storageClass: ""
-  size: 1Gi
-  accessModes:
-    - ReadWriteOnce
-
-# Labels
-labels:
-  app: mongodb
-
-# Probes Configuration
-livenessProbe:
-  enabled: true
-  initialDelaySeconds: 30
-  periodSeconds: 10
-  timeoutSeconds: 5
-  successThreshold: 1
-  failureThreshold: 3
-  
-readinessProbe:
-  enabled: true
-  initialDelaySeconds: 5
-  periodSeconds: 10
-  timeoutSeconds: 5
-  successThreshold: 1
-  failureThreshold: 3
-
-# Additional Configuration
-nodeSelector: {}
-
-tolerations: []
-
-affinity: {}
-
-# ConfigMap reference
-configMapRef:
-  name: app-configmap
-
-# Ingress Configuration
-ingress:
-  enabled: false
-  className: ""
-  annotations: {}
-  hosts: []
-  tls: []
+  requests:
+    cpu: 250m
+    memory: 256Mi
