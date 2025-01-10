@@ -1,0 +1,33 @@
+# values.yaml for Helm Chart
+
+# Deployment settings
+deployment:
+  replicas: 3
+  name: client-deployment
+  container:
+    name: front
+    image:
+      repository: ahmedamira22/mern-frontend
+      tag: latest
+    ports:
+      - containerPort: 5173
+    envFrom:
+      - configMapRef:
+          name: app-configmap
+
+# Service settings
+service:
+  name: client-service
+  type: NodePort
+  ports:
+    port: 80
+    targetPort: 5173
+    nodePort: 30006
+
+# ConfigMap settings
+configMap:
+  name: app-configmap
+  data:
+    MONGO_URI: mongodb://mongodb-service:27017/crud
+    REACT_APP_SERVER_URL: http://server-service:5000
+    PORT: "5000"
