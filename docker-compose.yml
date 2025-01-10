@@ -1,52 +1,36 @@
-version: '3.8'
-
 services:
-  frontend:
-    image: ahmedamira22/mern-frontend:latest
-    container_name: front
-    ports:
-      - "5173:5173"
-    depends_on:
-      - backend
-    networks:
-      - app-network
-    restart: unless-stopped
-    environment:
-      - VITE_API_URL=http://localhost:4000
+  api:
+    image: node:18
+    container_name: backend-app
+    working_dir: /app
+    command: npm start
 
-  backend:
-    image: ahmedamira22/mern-backend:latest  # Changed to use image
-    container_name: back
     ports:
       - "4000:4000"
-    environment:
-      - MONGODB_URI=mongodb://root:example@mongodb:27017/crud?authSource=admin
-      - PORT=4000
-    depends_on:
-      - mongodb
-    networks:
-      - app-network
-    restart: unless-stopped
-
-  mongodb:
-    image: mongo:6
-    container_name: mongo
-    ports:
-      - "27017:27017"
     volumes:
-      - mongo-data:/data/db
-    networks:
-      - app-network
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=example
-      - MONGO_INITDB_DATABASE=crud
-    restart: unless-stopped
+      - "./backend/:/app"
 
-networks:
-  app-network:
-    driver: bridge
+  web:
+    build:
+      context: ./client  
+    container_name: frontend-app
+    ports:
+      - "5173:5173"
+    volumes:
+      - "./client/:/src"
+      - /src/node_modules  
+
+  mongo:
+    image: mongo
+    restart: always
+    container_name: mongo-app
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: bouhmid
+      MONGO_INITDB_ROOT_PASSWORD: bouhmid
+    ports:
+      - "27017:27017" 
+    volumes:
+      - db-data:/data/db
 
 volumes:
-  mongo-data:
-    name: mongo-data
+  db-data: {}
