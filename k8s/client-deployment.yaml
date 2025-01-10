@@ -6,11 +6,11 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: mern-client
+      app: frontend-app
   template:
     metadata:
       labels:
-        app: mern-client
+        app: frontend-app
     spec:
       containers:
         - name: front

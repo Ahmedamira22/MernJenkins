@@ -4,11 +4,14 @@ services:
     container_name: backend-app
     working_dir: /app
     command: npm start
-
     ports:
       - "4000:4000"
     volumes:
       - "./backend/:/app"
+    environment:
+      - MONGODB_URI=mongodb://bouhmid:bouhmid@mongo:27017
+    depends_on:
+      - mongo
 
   web:
     build:
