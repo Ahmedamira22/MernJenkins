@@ -3,6 +3,6 @@ kind: ConfigMap
 metadata:
   name: app-configmap
 data:
-  MONGO_URI: "mongodb://bouhmid:bouhmid@mongodb:27017/crud?authSource=admin"
+  MONGO_URI: "mongodb://bouhmid:bouhmid@mongo:27017/crud?authSource=admin"
   REACT_APP_SERVER_URL: http://backend-service:4000
   PORT: "4000"
