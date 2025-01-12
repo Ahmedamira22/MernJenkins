@@ -20,6 +20,10 @@ Create a `docker-compose.yml` file at the root of the project to orchestrate the
 
 Ensure that the services are configured to communicate with each other correctly.
 
+```bash
+docker-compose up --build
+```
+
 ---
 
 ## **3. Setting Up CI with Jenkins**
@@ -75,6 +79,14 @@ Verify that the service is accessible via the NodePort address.
 ### **Helm Charts**
 
 Create Helm charts for each component in the `helm` folder to simplify and standardize deployments.
+
+```bash
+mkdir helm
+cd helm
+helm create backend
+helm create frontend
+helm create mongodb
+```
 
 ### **ArgoCD Integration**
 
