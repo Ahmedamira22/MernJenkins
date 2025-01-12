@@ -45,6 +45,11 @@ Create the following manifest files in the k8s folder:
 
 - `backend-deployment.yaml`: Deployment for the backend .
 - `backend-service.yaml`: Service exposing the backend with a NodePort.
+- `frontend-deployment.yaml`: Deployment for the frontend .
+- `frontend-service.yaml`: Service exposing the frontend with a NodePort.
+- `mongo-deployment.yaml`: Deployment for the database .
+- `mongo-service.yaml`: Service exposing the mongo with a NodePort.
+- `app-configmap.yaml`: storing configuration data as key-value
 
 **Local Deployment**
 
