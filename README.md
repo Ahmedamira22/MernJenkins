@@ -4,6 +4,8 @@
 
 ### Backend 
 
+![Backend Dockerfile](MernJenkins/1.png)
+
 Create a `Dockerfile` in the backend folder containing the necessary instructions to containerize the backend component.
 
 ### **Frontend (Client)**
