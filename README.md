@@ -4,8 +4,6 @@
 
 ### Backend 
 
-![Backend Dockerfile](images/1.png)
-
 Create a `Dockerfile` in the backend folder containing the necessary instructions to containerize the backend component.
 
 ### **Frontend (Client)**
@@ -27,6 +25,8 @@ docker-compose up --build
 ```
 
 ---
+
+![Backend Dockerfile](images/1.png)
 
 ## **3. Setting Up CI with Jenkins**
 
