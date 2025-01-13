@@ -76,6 +76,8 @@ kubectl apply -f mongo-service.yaml
 
 Verify that the service is accessible via the NodePort address.
 
+![Backend Dockerfile](images/3.png)
+
 ---
 
 ## **5. Deployment with Helm and ArgoCD**
