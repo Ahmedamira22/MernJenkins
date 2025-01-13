@@ -41,6 +41,8 @@ Create a `Jenkinsfile` with the following stages:
 5. **Push Images to Docker Hub**: Push the built images to Docker Hub.
 6. **End**: Complete the pipeline.
 
+![Backend Dockerfile](images/2.png)
+
 ---
 
 ## **4. Setting Up CD with Kubernetes**
