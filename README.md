@@ -47,7 +47,7 @@ Create a `Jenkinsfile` with the following stages:
 5. **Push Images to Docker Hub**: Push the built images to Docker Hub.
 6. **End**: Complete the pipeline.
 
-![Backend Dockerfile](images/3.png)
+![Backend Dockerfile](images/ahmed.png)
 
 ---
 
@@ -104,6 +104,8 @@ helm create mongodb
 
 1. Configure ArgoCD to monitor the Helm charts.
 2. Use the ArgoCD dashboard to manage and synchronize deployments.
+
+![Backend Dockerfile](images/5.png)
 
 ### **Verification**
 
