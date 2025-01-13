@@ -4,8 +4,6 @@
 
 ### Backend 
 
-![Backend Dockerfile](MernJenkins/1.png)
-
 Create a `Dockerfile` in the backend folder containing the necessary instructions to containerize the backend component.
 
 ### **Frontend (Client)**
@@ -28,6 +26,14 @@ docker-compose up --build
 
 ---
 
+![Backend Dockerfile](images/1.png)
+
+```bash
+http://localhost:5173/
+```
+
+![Backend Dockerfile](images/2.png)
+
 ## **3. Setting Up CI with Jenkins**
 
 ### **CI Pipeline**
@@ -40,6 +46,8 @@ Create a `Jenkinsfile` with the following stages:
 4. **Build Client Image**: Build the Docker image for the frontend (Client).
 5. **Push Images to Docker Hub**: Push the built images to Docker Hub.
 6. **End**: Complete the pipeline.
+
+![Backend Dockerfile](images/3.png)
 
 ---
 
@@ -73,6 +81,8 @@ kubectl apply -f mongo-service.yaml
 ```
 
 Verify that the service is accessible via the NodePort address.
+
+![Backend Dockerfile](images/4.png)
 
 ---
 
