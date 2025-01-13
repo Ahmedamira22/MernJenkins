@@ -100,6 +100,8 @@ helm create frontend
 helm create mongodb
 ```
 
+![Backend Dockerfile](images/helm.png)
+
 ### **ArgoCD Integration**
 
 1. Configure ArgoCD to monitor the Helm charts.
