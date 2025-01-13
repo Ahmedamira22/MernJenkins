@@ -113,3 +113,8 @@ Ensure that the applications are marked as **Healthy** and **Synced** in the Arg
 
 ---
 
+## **6. Monitoring**
+
+### **Grafana Dashboard**
+
+![Backend Dockerfile](images/6.png)
