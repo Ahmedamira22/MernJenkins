@@ -42,7 +42,7 @@ Create a `Jenkinsfile` with the following stages:
 
 1. **Start**: Initialize the pipeline.
 2. **Checkout SCM**: Retrieve the source code from the repository.
-3. **Build Server Image**: Build the Docker image for the backend (API).
+3. **Build Server Image**: Build the Docker image for the backend.
 4. **Build Client Image**: Build the Docker image for the frontend (Client).
 5. **Push Images to Docker Hub**: Push the built images to Docker Hub.
 6. **End**: Complete the pipeline.
@@ -62,7 +62,7 @@ Create the following manifest files in the k8s folder:
 - `frontend-deployment.yaml`: Deployment for the frontend .
 - `frontend-service.yaml`: Service exposing the frontend with a NodePort.
 - `mongo-deployment.yaml`: Deployment for the database .
-- `mongo-service.yaml`: Service exposing the mongo with a NodePort.
+- `mongo-service.yaml`: Service exposing the mongo with a ClusterIP.
 - `app-configmap.yaml`: storing configuration data as key-value
 
 **Local Deployment**
